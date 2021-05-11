@@ -1,0 +1,52 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+    <article>
+        <div class="row">
+            <div class="offset-by-two eight columns">
+
+
+                    <section>
+                        <h3>Customer Informations</h3>
+                        <table>
+                            <tr>
+                                <th>Order Number:</th>
+                                <td>{{ order.transaction_id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Customer Name:</th>
+                                <td>{{ order.customer }}</td>
+                            </tr>
+                            <tr>
+                                <th>Time:</th>
+                                <td>{{ order.date_ordered }}</td>
+                            </tr>
+                        </table>
+                        <h3>Order Items</h3>
+                        <table>
+                            {% for orderitem in orderItems %}
+                                <tr>
+                                     <a href="">{{ orderitem.product }}</a>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                        <h3>Shipping</h3>
+                        <ul>
+                            {% for ship in shipping %}
+                                <li>Address: {{ ship.address }}</li>
+                                <li>City: {{ ship.city }}</li>
+                                <li>Zipcode: {{ ship.zipcode }}</li>
+                                <li>State: {{ ship.state }}</li>
+                            {% endfor %}
+                        </ul>
+
+                    </section>
+
+
+            </div>
+        </div> <!-- row -->
+
+    </article>
+
+{% endblock content %}

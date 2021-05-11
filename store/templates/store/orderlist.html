@@ -1,0 +1,27 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+    <article>
+        <div class="row">
+            <div class="offset-by-two eight columns">
+
+                    <section>
+                        <table>
+                            {% for order in orders %}
+                            <tr>
+                                <th>Order Number:</th>
+                                <th><a href="{% url 'orderdetail' order.id %}">{{ order.transaction_id }}</a></th>
+
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </section>
+
+
+            </div>
+        </div> <!-- row -->
+
+    </article>
+
+{% endblock content %}
