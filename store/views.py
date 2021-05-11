@@ -5,10 +5,8 @@ import json
 import datetime
 from .models import *
 from .utils import cartData, guestOrder
-from .forms import OrderForm, CreateUserForm
+from .forms import CreateUserForm
 from django.contrib.auth import authenticate, login, logout
-from django.views.generic import DetailView
-from django.contrib.auth.decorators import login_required
 
 
 def store(request):
@@ -129,14 +127,16 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
 
+
 def orderlist(request):
     orders = Order.objects.all()
     context = {'orders': orders}
     return render(request, 'store/orderlist.html', context)
 
+
 def orderdetail(request, pk_test):
     order = Order.objects.get(id=pk_test)
     orderItems = order.orderitem_set.all()
     shipping = order.shippingaddress_set.all()
-    context = {'order': order, 'orderItems': orderItems, 'shipping': shipping }
+    context = {'order': order, 'orderItems': orderItems, 'shipping': shipping}
     return render(request, 'store/orderdetail.html', context)
